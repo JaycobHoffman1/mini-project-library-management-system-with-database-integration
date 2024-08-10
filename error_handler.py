@@ -1,6 +1,11 @@
 import re
 
-class NotInRangeError(Exception):
+"""
+This module handles user errors occurring within the program.
+Errors pertaining to the MySQL database "library_management_system_db" are handled within their respective class methods
+"""
+
+class NotInRangeError(Exception): # Custom error that raises when user enter number not on menu when making menu selection
     def raise_error():
         raise NotInRangeError
 
@@ -54,7 +59,8 @@ class ErrorHandler:
             
     def validate_input(self, user_input, pattern, input_type): # Ensures user input matches regex pattern
         while True:
-            _input = self.check_input(user_input, f"{input_type[0].upper()}{input_type[1:]}")
+            _input = self.check_input(user_input, f"{input_type[0].upper()}{input_type[1:]}") 
+            # Avoids using ".capitalize()" to preserve the case of "ISBN" when it is passed as a parameter
 
             try:
                 if not re.search(pattern, _input):
